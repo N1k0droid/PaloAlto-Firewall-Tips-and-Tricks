@@ -1,3 +1,5 @@
+<img width="1356" height="710" alt="image" src="https://github.com/user-attachments/assets/db14f195-4d77-4d61-934d-569cbd3bbc4d" />
+
 # Palo Alto Firewall - Tips and Tricks
 
 ![Palo Alto Networks](https://img.shields.io/badge/Palo%20Alto-Tips%20%26%20Tricks-blue)
