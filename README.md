@@ -6,7 +6,7 @@
 ![PAN-OS](https://img.shields.io/badge/PAN--OS-10.1%2B-green)
 ![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)
 
-Personal collection of Palo Alto Networks tips, tricks, workarounds, and practical configuration notes.
+Personal collection of tips, tricks, workarounds, and practical configuration notes for Palo Alto Networks devices.
 
 ## Contents
 
