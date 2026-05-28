@@ -18,7 +18,6 @@ An EDL is a remote text resource that PAN-OS retrieves on a schedule. By setting
 
 The egress path can be controlled with Service Route, so the request can be forced out through the interface of interest, including the 5G path, as long as the routing design supports it. Static routing can also influence the path to the provider, but Service Route is usually the cleaner option for firewall-originated traffic.
 
-
 ## Verified provider patterns
 
 | Provider | Simple GET | Verified endpoint pattern | Auto-detect source IP | Notes |
@@ -27,6 +26,8 @@ The egress path can be controlled with Service Route, so the request can be forc
 | Dynu | Yes | `https://api.dynu.com/nic/update?hostname={hostname}&password={password}` | Yes when IP is omitted, or can be explicitly set | Strong candidate. Returns short status text such as `good <ip-address>`. |
 | No-IP | Yes | `https://dynupdate.no-ip.com/nic/update?hostname={hostname}&myip=` | Yes if `myip` is left blank in most cases | Requires credentials or DDNS key. Still simple enough for EDL. |
 | FreeDNS / Afraid.org | Yes | `https://freedns.afraid.org/dynamic/update.php?{token}` or `https://sync.afraid.org/u/{token}/` | Yes, using tokenized/direct URL methods | Good fit because tokenized URLs are very simple. |
+
+HTTP is documented by the providers as well, but HTTPS is preferred when available.
 
 ## Example URLs
 
@@ -53,6 +54,7 @@ https://dynupdate.no-ip.com/nic/update?hostname=YOURHOSTNAME&myip=
 ```
 
 No-IP documents a direct update request URL and states that `myip` can usually be left blank unless a specific IP should be sent.
+
 ### FreeDNS / Afraid.org
 
 ```text
@@ -75,7 +77,8 @@ That means the firewall may import zero useful entries or flag the content as in
 
 ## Important behavior: the EDL must be referenced
 
-In practice, the EDL should be referenced in at least one active rule. Multiple PAN-OS users have observed that an unused EDL may not refresh reliably until it is actually used in policy. For this workaround, the safest design is to create a very small dummy rule whose only purpose is to keep the EDL active.
+A dummy rule is required. In practice, the EDL must be referenced in at least one active rule, otherwise it may not refresh reliably. The dummy rule keeps the EDL active without affecting normal traffic.
+
 A low-impact way to keep the EDL active is:
 
 - EDL type: IP List.
@@ -97,17 +100,17 @@ This keeps the rule almost inert while still making the EDL active enough to ref
 ## Screenshots
 
 ### EDL Object
-<img width="1767" height="837" alt="image" src="https://github.com/user-attachments/assets/3d8fcdf2-fce2-4651-b3f2-cd613fce2feb" />
+<img width="1767" height="837" alt="EDL Object" src="https://github.com/user-attachments/assets/3d8fcdf2-fce2-4651-b3f2-cd613fce2feb" />
 
 ### Dummy Rule
-<img width="1804" height="237" alt="image" src="https://github.com/user-attachments/assets/2115cd83-295f-4a17-9f2c-ed42ceb678be" />
-
-
-
+<img width="1804" height="237" alt="Dummy Rule" src="https://github.com/user-attachments/assets/2115cd83-295f-4a17-9f2c-ed42ceb678be" />
 
 ## Security notes
 
-This method is convenient, but it is not ideal from a security standpoint. The update URL may contain credentials or tokens in the query string or authentication fields. HTTPS should be used whenever the provider supports it.
+This method is convenient, but it is not ideal from a security standpoint. The update URL may contain credentials or tokens in the query string.
+
+HTTPS can be used and works with certificate profile set to None. In that case, PAN-OS does not validate the server certificate and will generate a warning at commit time. For full server certificate validation, a certificate profile with the provider's CA chain must be configured.
+
+HTTP is also supported and documented by several providers, but the traffic is sent in clear text.
 
 Because this is not the intended use of the EDL feature, it should always be presented as an unsupported workaround rather than as a supported PAN-OS design.
-
