@@ -10,7 +10,7 @@ Personal collection of tips, tricks, workarounds, and practical configuration no
 
 ## Contents
 
-- [DDNS: Using an External Dynamic List to Trigger Updates](paloalto-edl-ddns/README.md)
+- [DDNS: Using an External Dynamic List to Trigger Updates](paloalto-edl-ddns/README.md) - use an EDL as a scheduled HTTP trigger to update a DDNS record from the firewall, e.g. on cellular interfaces where PAN-OS has no native DDNS. Unofficial workaround.
 
 ## Tools
 
