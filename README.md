@@ -10,11 +10,15 @@ Personal collection of tips, tricks, workarounds, and practical configuration no
 
 ## Contents
 
-- [DDNS: Using an External Dynamic List to Trigger Updates](paloalto-edl-ddns/README.md) - use an EDL as a scheduled HTTP trigger to update a DDNS record from the firewall, e.g. on cellular interfaces where PAN-OS has no native DDNS. Unofficial workaround.
+- [DDNS: Using an External Dynamic List to Trigger Updates](paloalto-edl-ddns/README.md)
+
+  Use an EDL as a scheduled HTTP trigger to update a DDNS record from the firewall, e.g. on cellular interfaces where PAN-OS has no native DDNS. Unofficial workaround.
 
 ## Tools
 
-- [PAN-OS Export Archiver](https://github.com/N1k0droid/panos-export-archiver) - archive, monitor (Zabbix) and search the log and configuration exports of PAN-OS firewalls and Panorama on Windows. Separate repository.
+- [PAN-OS Export Archiver](https://github.com/N1k0droid/panos-export-archiver)
+
+  Archive, monitor (Zabbix) and search the log and configuration exports of PAN-OS firewalls and Panorama on Windows. Separate repository.
 
 ## Scope
 
