@@ -12,6 +12,10 @@ Personal collection of tips, tricks, workarounds, and practical configuration no
 
 - [DDNS: Using an External Dynamic List to Trigger Updates](paloalto-edl-ddns/README.md)
 
+## Tools
+
+- [PAN-OS Export Archiver](https://github.com/N1k0droid/panos-export-archiver) - archive, monitor (Zabbix) and search the log and configuration exports of PAN-OS firewalls and Panorama on Windows. Separate repository.
+
 ## Scope
 
 This repository is intentionally small at the beginning and will grow over time with more Palo Alto-related notes, workarounds, and field-tested configurations.
